@@ -14,6 +14,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer func() {
+		err := f.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
+
 	result, err := firstPart(f)
 	if err != nil {
 		log.Fatal(err)
